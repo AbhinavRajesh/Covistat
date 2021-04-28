@@ -48,11 +48,12 @@ const DistrictTable = ({ data }: DistrictTableProps) => {
   const columns: ColumnsType<TableData> = [
     {
       title: "DISTRICT",
-      width: width > 500 ? 200 : 170,
+      width: width > 500 ? 200 : 130,
       dataIndex: "district",
       key: "district",
       fixed: "left",
       sorter: (a, b) => a.district.localeCompare(b.district),
+      ellipsis: true,
     },
     {
       title: "CONFIRMED",
@@ -86,28 +87,28 @@ const DistrictTable = ({ data }: DistrictTableProps) => {
       title: "UNDER OBSERVATION",
       dataIndex: "total_obs",
       key: "total_obs",
-      width: 150,
+      width: width > 500 ? 150 : 130,
       sorter: (a, b) => a.total_obs - b.total_obs,
     },
     {
       title: "HOME ISOLATION",
       dataIndex: "home_obs",
       key: "home_obs",
-      width: 150,
+      width: width > 500 ? 150 : 130,
       sorter: (a, b) => a.home_obs - b.home_obs,
     },
     {
       title: "HOSPITAL ISOLATION",
       dataIndex: "hospital_obs",
       key: "hospital_obs",
-      width: 150,
+      width: width > 500 ? 150 : 130,
       sorter: (a, b) => a.hospital_obs - b.hospital_obs,
     },
     {
       title: "HOSPITALIZED TODAY",
       dataIndex: "hospital_today",
       key: "hospital_today",
-      width: 150,
+      width: width > 500 ? 150 : 140,
       sorter: (a, b) => a.hospital_today - b.hospital_today,
     },
   ];
