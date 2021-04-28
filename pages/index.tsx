@@ -1,15 +1,34 @@
-import Link from 'next/link'
-import Layout from '../components/Layout'
+import type { InferGetStaticPropsType } from "next";
 
-const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-    </p>
+import Layout from "../components/Layout";
+import DistrictTable from "../components/DistrictTable";
+import GraphData from "../components/GraphData";
+
+import { getData } from "../lib/getData";
+
+const Index = ({
+  lastUpdated,
+  histories,
+  summary,
+  districtData,
+}: InferGetStaticPropsType<typeof getStaticProps>) => (
+  <Layout title="Covistats - Home" lastUpdated={lastUpdated}>
+    <DistrictTable data={districtData} />
+    <GraphData data={histories} total={summary.summary} today={summary.delta} />
   </Layout>
-)
+);
 
-export default IndexPage
+export const getStaticProps = async () => {
+  const { lastUpdated, histories, summary, districtData } = await getData();
+
+  return {
+    props: {
+      lastUpdated,
+      histories,
+      summary,
+      districtData,
+    },
+  };
+};
+
+export default Index;
