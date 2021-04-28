@@ -19,6 +19,11 @@ const Layout = ({ children, title = "Covistats", lastUpdated }: Props) => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css"></link>
+        <link
+          rel="shortcut icon"
+          href="https://www.flaticon.com/svg/vstatic/svg/2913/2913604.svg?token=exp=1619604113~hmac=3bf5dc8bce3a3f9019be62f75f5b2256"
+          type="image/x-icon"
+        />
       </Head>
       <Header
         lastUpdated={lastUpdated}

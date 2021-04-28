@@ -63,7 +63,7 @@ const Card = ({ title, data, labels, total, today }: CardProps) => {
             </span>
           </div>
         </div>
-        <Line options={options} data={chartData} />
+        <Line options={options} data={chartData} type={undefined} />
       </div>
     </div>
   );
