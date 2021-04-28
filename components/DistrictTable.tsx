@@ -20,11 +20,11 @@ interface TableData {
 }
 
 const DistrictTable = ({ data }: DistrictTableProps) => {
-  const [districts, setDistricts] = useState<(keyof Stats.Districts)[]>([]);
   const [tableData, setTabledata] = useState<TableData[]>([]);
-  const [sortedInfo, setSortedInfo] = useState({});
+  const [width, setWidth] = useState(0);
 
   useEffect(() => {
+    if (window) setWidth(window.innerWidth);
     const tempTableData: TableData[] = [];
     Object.keys(data.summary).map((district, key) => {
       tempTableData.push({
@@ -48,7 +48,7 @@ const DistrictTable = ({ data }: DistrictTableProps) => {
   const columns: ColumnsType<TableData> = [
     {
       title: "DISTRICT",
-      width: 200,
+      width: width > 500 ? 200 : 170,
       dataIndex: "district",
       key: "district",
       fixed: "left",
@@ -112,56 +112,20 @@ const DistrictTable = ({ data }: DistrictTableProps) => {
     },
   ];
 
-  const handleChange = (pagination, _, sorter) => {
-    setSortedInfo(sorter);
-  };
-
   return (
     <>
-      <p className="text-lg text-center font-bold m-5">District vise data</p>
-      {districts && (
-        <Table
-          scroll={{ x: 800 }}
-          columns={columns}
-          dataSource={tableData}
-          onChange={handleChange}
-          pagination={false}
-        />
-      )}
+      <h1 className="text-lg md:text-xl text-center font-bold my-8 primary-color">
+        District wise COVID-19 cases
+      </h1>
+      <Table
+        scroll={{ x: 800 }}
+        columns={columns}
+        dataSource={tableData}
+        pagination={false}
+        loading={tableData.length === 0}
+      />
     </>
   );
 };
 
 export default DistrictTable;
-{
-  /* <table className="rounded-t-lg m-5 w-full mx-auto bg-gray-800 overflow-scroll text-sm">
-          <tr className="text-left border-b border-gray-300">
-            <th className="px-4 py-3">DISTRICT</th>
-            <th className="px-4 py-3">CONFIRMED</th>
-            <th className="px-4 py-3">ACTIVE</th>
-            <th className="px-4 py-3">RECOVERED</th>
-            <th className="px-4 py-3">DEATHS</th>
-            <th className="px-4 py-3">UNDER OBSERVATION</th>
-            <th className="px-4 py-3">HOME ISOLATION</th>
-            <th className="px-4 py-3">HOSPITAL ISOLATION</th>
-            <th className="px-4 py-3">HOSPITALIZED TODAY</th>
-          </tr>
-          {districts.map((district) => (
-            <tr className="bg-gray-700 border-b border-gray-600">
-              <td className="px-4 py-3">{district}</td>
-              <td className="px-4 py-3">{data.summary[district].confirmed}</td>
-              <td className="px-4 py-3">{data.summary[district].active}</td>
-              <td className="px-4 py-3">{data.summary[district].recovered}</td>
-              <td className="px-4 py-3">{data.summary[district].deceased}</td>
-              <td className="px-4 py-3">{data.summary[district].total_obs}</td>
-              <td className="px-4 py-3">{data.summary[district].home_obs}</td>
-              <td className="px-4 py-3">
-                {data.summary[district].hospital_obs}
-              </td>
-              <td className="px-4 py-3">
-                {data.summary[district].hospital_today}
-              </td>
-            </tr>
-          ))}
-        </table> */
-}

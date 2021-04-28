@@ -31,8 +31,8 @@ body {
 }
 
 .container {
-  max-width: 1000px;
-  @apply mx-auto;
+  max-width: 1400px;
+  @apply mx-auto px-10;
 }
 
 .primary-color {
@@ -71,4 +71,16 @@ td.ant-table-column-sort,
 }
 .card__bg {
   background: #141e31;
+}
+
+.selected {
+  color: #5c91fc;
+  border-bottom: 3px solid #5c91fc;
+}
+.vaccine {
+  height: 70vh;
+}
+
+.footer {
+  border-top: 1px solid #5c91fc;
 }

@@ -28,6 +28,7 @@ export const getStaticProps = async () => {
       summary,
       districtData,
     },
+    revalidate: 1 * 60 * 60 * 4, // Update every 4hr
   };
 };
 

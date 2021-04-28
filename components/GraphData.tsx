@@ -81,7 +81,9 @@ const GraphData = ({ data, total, today }: GraphDataProps) => {
 
   return (
     <div>
-      <h1>Displays the graph</h1>
+      <h1 className="text-white font-semibold primary-color text-lg md:text-xl my-8 flex justify-center">
+        Stats
+      </h1>
       <div className="flex flex-wrap">
         {totalData.length > 1 &&
           Object.keys(totalData[0]).map((d) => {

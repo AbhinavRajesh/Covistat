@@ -1,4 +1,4 @@
-import { ChartOptions, ChartData } from "chart.js";
+import { ChartOptions } from "chart.js";
 import { Line } from "react-chartjs-2";
 
 interface CardProps {
@@ -44,13 +44,23 @@ const Card = ({ title, data, labels, total, today }: CardProps) => {
   };
 
   return (
-    <div className="flex-1 p-4 card__bg m-4 rounded">
+    <div className="flex-1 w-full md:w-1/2 p-4 card__bg my-4 md:m-4 rounded">
       <div>
         <div className="flex justify-between mb-4">
-          <h2 className="text-white font-semibold text-2xl">{title}</h2>
-          <div className="flex items-center">
-            <span className="text-white text-xl">{total}</span>
-            <span className="text-white text-xs px-2"> +{today}</span>
+          <h2 className="font-semibold text-xl sm:text-2xl primary-color">
+            {title}
+          </h2>
+          <div className="flex flex-col justify-center items-end font-medium">
+            <span className="text-white text-lg sm:text-xl">{total}</span>
+            <span className="flex text-white text-xs items-center md:pl-2">
+              <span>{today < 0 ? today : ` +${today}`}</span>
+              <span className="pl-2">
+                {today < 0
+                  ? ((today * 100) / total).toFixed(2)
+                  : `+${((today * 100) / total).toFixed(2)}`}
+                %
+              </span>
+            </span>
           </div>
         </div>
         <Line options={options} data={chartData} />
