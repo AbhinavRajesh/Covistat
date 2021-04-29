@@ -85,12 +85,13 @@ const GraphData = ({ data, total, today }: GraphDataProps) => {
         Stats
       </h1>
       <div className="flex flex-wrap">
-        {totalData.length > 1 &&
-          Object.keys(totalData[0]).map((d) => {
+        {totalData.length > 0 &&
+          Object.keys(totalData[0]).map((d, i) => {
             let title = getTitle(d);
             if (d === "date") return;
             return (
               <Card
+                key={i}
                 title={title}
                 labels={totalData.map(({ date }) => date)}
                 data={totalData.map((disp) => disp[d as keyof Data])}

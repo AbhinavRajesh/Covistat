@@ -30,6 +30,7 @@ const Header = ({ lastUpdated, selected, setSelected }: HeaderProps) => {
         target="_blank"
         rel="noopener noreferrer"
         className="absolute right-0 top-0"
+        aria-label="Github Source Code"
       >
         <svg
           width="80"
